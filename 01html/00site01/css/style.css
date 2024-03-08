@@ -22,6 +22,8 @@ li {
 
 body {
   height: 200%;
+  font-family: "Noto Sans KR", sans-serif;
+  font-optical-sizing: auto;
 }
 
 /* header */
@@ -116,8 +118,79 @@ a.btn:hover{
   color:black;
 }
 .swiper-slide {
+<<<<<<< HEAD
   background: #fff;
+=======
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.swiper .bgImage {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.swiper .bgImage.bgImg01 {
+  background-image: url(../img/new_main_visual_bg01.jpg);
+}
+.swiper .bgImage.bgImg02 {
+  background-image: url(../img/new_main_visual_bg02.jpg);
+}
+.swiper .bgImage.bgImg03 {
+  background-image: url(../img/new_main_visual_bg03.jpg);
+}
+.swiper .bgImage.bgImg04 {
+  background-image: url(../img/new_main_visual_bg04.jpg);
+}
+
+.txtWrap {
+  width: 1240px;
+  display: flex;
+  align-items: center;
+}
+
+/* header */
+.hd {
+  position: fixed;
+  width: 100%;
+  z-index: 99999;
+}
+.hd .gnbWrap ul {
+  display: flex;
+  height: 100%;
+}
+
+.gnbWrap li a {
+  height: 100%;
+  /* background: pink; */
+>>>>>>> 3a026374ed482146c32a05e4a28e5c6a993e04d9
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+
+.utilWrap ul {
+  display: flex;
+  height: 100%;
+}
+.utilWrap li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  /* padding: 0 5px; */
+}
+.utilWrap a {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  font-weight: bold;
+  color: white;
 }

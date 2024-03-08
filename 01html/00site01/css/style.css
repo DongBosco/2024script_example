@@ -2,6 +2,7 @@
 html,
 body {
   height: 100%;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 * {
@@ -23,15 +24,98 @@ body {
   height: 200%;
 }
 
+/* header */
+
+.hd .gnbWrap ul{
+  display: flex;
+  height: 100%;
+}
+.gnbWrap li{
+}
+.gnbWrap li a{
+  display: block;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.utilWrap ul{
+  display: flex;
+  height: 100%;
+}
+
+.utilWrap li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px;
+}
+.utilWrap a{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* body */
 .swiper {
   width: 100%;
   height: 100vh;
   min-height: 760px;
 }
+.swiper .bgImage{
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.swiper .bgImage.bgImg01{
+  background-image: url('/01html/00site01/img/new_main_visual_bg01.jpg');  
+}
+.swiper .bgImage.bgImg02{
+  background-image: url('/01html/00site01/img/new_main_visual_bg02.jpg');
+}
+.swiper .bgImage.bgImg03{
+  background-image: url('/01html/00site01/img/new_main_visual_bg03.jpg');
+}
+.swiper .bgImage.bgImg04{
+  background-image: url('/01html/00site01/img/new_main_visual_bg04.jpg');
+}
+.txtWrap{
+  width:1240px;
+  display: flex;
+  align-items: center;
 
+}
+a.btn{
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color:white;
+  font-weight: bold;
+
+  border:1px solid #fff;
+
+  transition: 0.3s; 
+}
+a.btn.active{
+  background-color: #fff;
+  color:black;
+}
+a.btn:hover{
+  background-color: #fff;
+  color:black;
+}
 .swiper-slide {
-  text-align: center;
-  font-size: 18px;
   background: #fff;
   display: flex;
   justify-content: center;

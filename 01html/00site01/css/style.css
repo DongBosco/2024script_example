@@ -118,9 +118,6 @@ a.btn:hover{
   color:black;
 }
 .swiper-slide {
-<<<<<<< HEAD
-  background: #fff;
-=======
   display: flex;
   justify-content: center;
   /* align-items: center; */
@@ -164,7 +161,6 @@ a.btn:hover{
 .gnbWrap li a {
   height: 100%;
   /* background: pink; */
->>>>>>> 3a026374ed482146c32a05e4a28e5c6a993e04d9
   display: flex;
   justify-content: center;
   align-items: center;

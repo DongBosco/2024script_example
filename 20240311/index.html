@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <td>이름</td>
+            <td>색상</td>
+            <td>스피드</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <script type="module">
+        import car from "./carData.js"
+
+        let text = '';
+        for(let i in car){
+            text += `<tr>
+                        <td>${car[i].name}</td>
+                        <td>${car[i].color}</td>
+                        <td>${car[i].speed}</td>
+                    </tr>
+                    `
+        }
+        document.querySelector(".table").innerHTML = text;
+    </script>
+</body>
+</html>

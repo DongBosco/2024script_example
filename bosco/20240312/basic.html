@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <button class="btn">클릭</button>
+    <div class="box"></div>
+    <script>
+        // jQuery연습
+        $(".btn").on("click",function(){
+            $(".box").addClass("active");
+        });
+    </script>    
+</body>
+</html>

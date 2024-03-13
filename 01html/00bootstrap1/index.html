@@ -175,7 +175,7 @@
     </div>
 
     <!-- portfolio -->
-    <div class="container cont-2st">
+    <div class="container cont-2nd">
       <h2>PORTFOLIO</h2>
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, nam?
@@ -262,23 +262,23 @@
       referrerpolicy="no-referrer"
     ></script>
     <script>
-      $(".cont-2st .btn-group div").click(function () {
+      $(".cont-2nd .btn-group div").click(function () {
         // alert("test " + $(this).index());
-        $(".cont-2st .btn-group div").removeClass("active");
+        $(".cont-2nd .btn-group div").removeClass("active");
         $(this).addClass("active");
 
         let selector = $(this).attr("data-filter");
 
-        $(".cont-2st .view").isotope({
+        $(".cont-2nd .view").isotope({
           filter: selector,
         });
       });
 
       window.addEventListener("load", function () {
-        $(".cont-2st .btn-group div").eq(0).trigger("click");
+        $(".cont-2nd .btn-group div").eq(0).trigger("click");
       });
 
-      // const divElm = document.querySelectorAll(".cont-2st .btn-group div");
+      // const divElm = document.querySelectorAll(".cont-2nd .btn-group div");
       // for (let i = 0; i < divElm.length; i++) {
       //   divElm[i].addEventListener("click", function () {
       //     alert("test" + i);

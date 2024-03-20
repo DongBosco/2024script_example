@@ -32,12 +32,18 @@
           class="inp form-control"
           placeholder="검색어를 입력하세요"
           name="query"
+          value="블랙핑크"
         />
         <button class="btn btn-primary">click</button>
       </form>
     </div>
     <div class="container">
       <ul class="lists"></ul>
+      <nav class="bg-info d-flex justify-content-center">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+        </ul>
+      </nav>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -46,8 +52,10 @@
       // global init
       const auth = "KakaoAK 6e06c47b69afc400ef46abaab6dae622";
       const url = "https://dapi.kakao.com/v2/search/web";
-
+      const size = 5
+      const page = 1
       // function
+ 
       function onSubmit(e) {
         e.preventDefault();
         let query = $(".inp").val().trim();
@@ -56,20 +64,34 @@
 
         if (query != "") {
           axios
-            .get(url, {
-              params: {query: query},
-              headers: {Authorization: auth},
-            })
+            .get(url, getParams(query))
             .then(onSuccess);
         } else {
           $(".inp").focus(); // input focus
         }
+      }
+      function getParams(query){
+        return {
+          params: {query: query, size: size, page: page},
+          headers: {Authorization: auth},
+        }
+      }
+      function setPager(totalRecord){
+        let pagerCnt = 5
+        let totalPage = Math.ceil(totalRecord / size)
+
+        let startPage = Math.floor((page - 1) / pagerCnt) * pagerCnt + 1;
+        let endPage = startPage + pagerCnt - 1;
+        console.log("totalPage :" +totalPage)
       }
 
       function onSuccess(res) {
         // console.log(res.data);
         let v = res.data.documents;
         console.log(v);
+
+        setPager(res.data.meta.pageable_count);
+
 
         let txt = "";
         for (let i = 0; i < v.length; i++) {
@@ -90,6 +112,8 @@
       //   $(".search-form").submit(function(){실행문장});
       //   $(".search-form").submit(함수이름);
       $(".search-form").submit(onSubmit);
+
+      $(".btn").trigger("click");
     </script>
   </body>
 </html>

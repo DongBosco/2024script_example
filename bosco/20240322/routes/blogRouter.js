@@ -6,14 +6,8 @@ const blogRouter = Router();
 
 blogRouter.post('/', async (req, res) => {
     try {
-        const {blogId} = req.params
-        cosnt {content, userId} = req.body
-
-        const [blog,user] = await Promise.all([
-            Blog.findOne({_id:blogId}),
-            User.findOne({_id:userId})
-        ])
         const { title, content, islive, userId } = req.body;
+
         let user = await User.findById(userId);
         if (!user) {
             return res.status(400).send({ err: 'user가 없습니다.' });

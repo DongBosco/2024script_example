@@ -11,28 +11,23 @@ const commentRouter = Router();
 
 commentRouter.post('/', async (req, res) => {
     try {
-        const { content, userId, blogId } = req.body; //수정요
-
-        let user = await User.findById(userId);
-        if (!user) {
-            return res.status(400).send({ err: 'user가 없습니다.' });
-        }
-        let blog = await Blog.findById(blogId);
-        if (!blog) {
-            return res.status(400).send({ err: 'blog가 없습니다.' });
+        const [blog, user] = await Promise.all([Blog.findOne({ _id: blogId }), User.findOne({ _id: userId })]);
+        if (!blog || !user) {
+            return res.status(400).send({ err: 'blog, user를 찾을수 없네요', blogId, userId, content });
         }
 
-        let comment = new Comment({ ...req.body, user, blog }); //수정요
-
+        const comment = new Comment({ content, user, blog });
         await comment.save();
-        return res.send(comment);
+
+        return res.send({ comment });
     } catch (error) {
         return res.status(500).send({ error: error.message });
     }
 });
 commentRouter.get('/', async (req, res) => {
     try {
-        const comments = await Comment.find({});
+        const { blogId } = req.params;
+        const comments = await Comment.find({ blogId });
         return res.send({ comments });
     } catch (error) {
         return res.status(500).send({ error: error.message });

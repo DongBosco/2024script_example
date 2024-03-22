@@ -24,7 +24,7 @@ const server = async function () {
         });
         app.use('/user', userRouter);
         app.use('/blog', blogRouter);
-        app.use('/comment', commentRouter);
+        app.use('/blog/:blogId/comment', commentRouter);
         app.listen(3000);
     } catch (error) {
         console.log('잘못연결');

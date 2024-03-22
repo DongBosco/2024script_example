@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button class="findMe">내위치보기</button>
+        <p class="status">아직모름</p>
+        <script>
+            const status = document.querySelector('.status');
+
+            function geoFindMe() {
+                function success(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    console.log(position);
+
+                    status.textContent = `위도 : ${latitude} / 경도 : ${longitude}`;
+                }
+
+                function error() {
+                    status.textContent = '현재 위치를 찾을 수 없네요.';
+                }
+                if (!navigator.geolocation) {
+                    status.textContent = '브라우저가 지원안함.';
+                } else {
+                    alert('위치파악중');
+                    navigator.geolocation.getCurrentPosition(success, error);
+                }
+            }
+            document.querySelector('.findMe').addEventListener('click', geoFindMe());
+        </script>
+    </body>
+</html>

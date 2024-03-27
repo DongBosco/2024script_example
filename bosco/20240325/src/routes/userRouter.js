@@ -1,7 +1,7 @@
 const {Router} = require("express")
+const userRouter = Router()
 const {default:mongoose}= require("mongoose")
 const {User} = require("../../model/User");
-const userRouter = Router()
 
 userRouter.get("/", async (req, res)=>{
     try {

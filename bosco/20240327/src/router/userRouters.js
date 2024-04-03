@@ -1,36 +1,70 @@
 const {User} = require("../model/User");
-const {Router} = require("express")
-const userRouters = Router()
-const {hash} = require("bcryptjs")
+const express = require("express");
+const userRouter = express.Router();
+const {hash, compare} = require("bcryptjs");
+const { upload } = require("../middleWares/imageUpload");
 
-userRouters.post("/reg", async (req,res)=>{
-    try {
-        const password = await hash(req.body.password,10);
+userRouter.post("/reg", async function (req, res) {
+  try {
+    const password = await hash(req.body.password, 10);
 
-        const user = await new User({
-            ...req.body, password: password
-        }).save();
-        return res.send({user})
-    } catch (error) {
-        return res.status(500).send({error: error.message})        
+    console.log(password);
+    const user = await new User({
+      ...req.body,
+      password,
+    }).save();
+    return res.send({user});
+  } catch (error) {
+    return res.status(500).send({error: error.message});
+  }
+});
+
+userRouter.post("/login", async function (req, res) {
+  try {
+    // console.log(req.body);
+    const user = await User.findOne({useremail: req.body.useremail});
+
+    const isValid = await compare(req.body.password, user.password);
+    if (!isValid) {
+      return res
+        .status(400)
+        .send({error: "입력하신 정보가 올바르지 않습니다."});
     }
-} )
-userRouters.get("/", async (req,res)=>{
+    console.log(isValid);
+    return res.send({
+      massage: "로그인 되셨습니다.",
+      email: user.useremail,
+    });
+  } catch (error) {
+    return res.status(500).send({error: error.message});
+  }
+});
+
+userRouter.get("/", async function (req, res) {
+  try {
+    const user = await User.find({});
+    return res.send({user});
+  } catch (error) {
+    return res.status(500).send({error: error.message});
+  }
+});
+
+userRouter.put("/reg_modi/:userId", upload.single("avatar"),async (req,res)=>{
     try {
-        const user = await User.find({})
-        return res.send({user})
+        const {userId} = req.params;
+        const {username} = req.body;
+        const {filename, originalname} =req.file; 
+
+        const image ={filename, originalname}
+        const updateUser = await User.findOneAndUpdate(            
+            {_id : userId},
+            {username, image},
+            {new :true}   
+        )
+        return res.send({updateUser})
     } catch (error) {
-        return res.status(500).send({error: error.message})
+        return res.status(500).send({error: error.message});
     }
 })
 
-userRouters.post("/login", async (req,res)=>{
-    try {
-        console.log(req.body)
-        const user = await User.findOne({useremail: req.body.useremail})
-        return res.send(req.body)
-    } catch (error) {
-        return res.status(500).send({error: error.message})
-    }
-})
-module.exports = {userRouters};
+module.exports = {userRouter};

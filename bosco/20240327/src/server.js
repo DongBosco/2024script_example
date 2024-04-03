@@ -4,7 +4,7 @@ const app = express();
 const dotenv = require("dotenv");
 
 const { imageRouter } = require("./router/imageRouter");
-const { userRouters } = require("./router/userRouters");
+const { userRouter } = require("./router/userRouters");
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ const server = async function () {
     console.log("db연결됨");
     
     app.use(express.json());
-    app.use("/user",userRouters);
+    app.use("/user",userRouter);
     app.use("/upload", imageRouter);
 
     app.get("/",async (req,res)=>{
